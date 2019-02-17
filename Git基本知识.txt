@@ -1,0 +1,38 @@
+1、什么是 Git 复刻（fork）？复刻（fork）、分支（branch）和克隆（clone）之间有什么区别？
+	复刻（fork） 是对存储仓库（repository）进行的远程的、服务器端的拷贝，从源头上就有所区别。复刻实际上不是 Git 的范畴。它更像是个政治/社会概念。
+	克隆（clone） 不是复刻，克隆是个对某个远程仓库的本地拷贝。克隆时，实际上是拷贝整个源存储仓库，包括所有历史记录和分支。
+	分支（branch） 是一种机制，用于处理单一存储仓库中的变更，并最终目的是用于与其他部分代码合并。
+2、“拉取请求（pull request）”和“分支（branch）”之间有什么区别？
+	分支（branch） 是代码的一个独立版本。
+	拉取请求（pull request） 是当有人用仓库，建立了自己的分支，做了些修改并合并到该分支（把自己修改应用到别人的代码仓库）。
+3、“git pull”和“git fetch”之间有什么区别？
+	简单来说，git pull 是 git fetch + git merge。
+	pull相当于git fetch 和 git merge，即更新远程仓库的代码到本地仓库，然后将内容合并到当前分支。
+	git fetch：相当于是从远程获取最新版本到本地，不会自动merge
+	git merge :  将内容合并到当前分支
+	git pull：相当于是从远程获取最新版本并merge到本地
+4、tag
+	tag指向一次commit的id，通常用来给开发分支做一个标记
+	打标签 : git tag -a v1.01 -m "Relase version 1.01"
+	提交标签到远程仓库 :  git push origin --tags
+	查看标签 : git tag
+	查看某两次tag之间的commit：git log --pretty=oneline tagA..tagB
+	查看某次tag之后的commit: git log --pretty=oneline tagA..
+5、Git工作流程
+	1、在工作目录中修改某些文件
+	2、对修改后的文件进行快照，然后保存到暂存区域
+	3、提交更新，将保存在暂存区域的文件快照永久转储到Git目录中
+6、常用命令
+	git show # 显示某次提交的内容 git show $id
+	git add <file> # 将工作文件修改提交到本地暂存区
+	git rm <file> # 从版本库中删除文件
+	git reset <file> # 从暂存区恢复到工作文件
+	git reset HEAD^ # 恢复最近一次提交过的状态，即放弃上次提交后的所有本次修改
+	git diff <file> # 比较当前文件和暂存区文件差异 git diff
+	git log -p <file> # 查看每次详细修改内容的diff
+	git branch -r # 查看远程分支
+	git merge <branch> # 将branch分支合并到当前分支
+	git stash # 暂存
+	git stash pop #恢复最近一次的暂存
+	git pull # 抓取远程仓库所有分支更新并合并到本地
+	git push origin master # 将本地主分支推到远程主分支
